@@ -78,8 +78,7 @@ export default function Home() {
             <p className="text-gray-800 dark:text-gray-300 leading-6 tracking-wide mb-12">
                 I'm a full stack web developer from Magdeburg, Germany&nbsp;🇩🇪. Right now, I'm an apprentice at <a
                 className={'font-semibold text-violet-500 hover:underline'} href={'https://muensmedia.de'}
-                target={'_blank'}>MÜNSMEDIA</a>
-                &nbsp;GmbH, also in Magdeburg. On top of that, I'm running my own project
+                target={'_blank'}>MÜNSMEDIA&nbsp;GmbH</a>, also in Magdeburg. On top of that, I'm running my own project
                 since <b>{new Date().getFullYear() - 2019}</b> years called <a
                 className={'font-semibold text-violet-500 hover:underline'}
                 href={'https://lvckyworld.net'}
