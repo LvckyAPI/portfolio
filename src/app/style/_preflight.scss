@@ -49,4 +49,6 @@ p {
   @apply text-gray-800 dark:text-gray-300 leading-6 tracking-wide mb-12;
 }
 
-
+.lw-content-container {
+  @apply mt-24 w-full mb-32;
+}

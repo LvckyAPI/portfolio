@@ -36,6 +36,7 @@ export default function Navbar() {
                     <ThemeToggle/>
                     <LandingButton name="Home" link="/" selected={pathName === "/"}/>
                     <LandingButton name="Contact" link="/contact" selected={pathName === "/contact"}/>
+                    <LandingButton name="Site Notice" link="/site-notice" selected={pathName === "/site-notice"}/>
                 </div>
 
                 <div className="socials">
@@ -111,6 +112,12 @@ export default function Navbar() {
                                     name="Contact"
                                     link="/contact"
                                     selected={pathName === "/contact"}
+                                    onClick={() => setMenuOpen(false)}
+                                />
+                                <MobileLandingButton
+                                    name="Site Notice"
+                                    link="/site-notice"
+                                    selected={pathName === "/site-notice"}
                                     onClick={() => setMenuOpen(false)}
                                 />
                             </div>
