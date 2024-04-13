@@ -21,8 +21,8 @@ services:
       - "traefik.http.routers.${PROJECT_NAME}_typescript.tls.certresolver=letsencrypt"
 
       # Basic Auth
-      - 'traefik.http.routers.${PROJECT_NAME}_typescript.middlewares=kdg-staging-auth'
-      - 'traefik.http.middlewares.kdg-staging-auth.basicauth.users=iven:$$apr1$$gktbi3ds$$z.Qi8HCECY4FWOxT3hz0Y0'
+      - 'traefik.http.routers.${PROJECT_NAME}_typescript.middlewares=${PROJECT_NAME}-auth'
+      - 'traefik.http.middlewares.${PROJECT_NAME}-auth.basicauth.users=iven:$$apr1$$gktbi3ds$$z.Qi8HCECY4FWOxT3hz0Y0'
 
       - "traefik.docker.network=lvckyworld_proxy"
     networks:
