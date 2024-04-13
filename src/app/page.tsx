@@ -45,7 +45,7 @@ export default function Home() {
             animate={{opacity: 1, scale: 1}}
             exit={{opacity: 0, scale: 0.95}}
             transition={{ease: "easeOut", duration: 0.15}}
-            className="lw-content-container"
+            className="lw-content-container home"
         >
             <div className={'avatar-container'}>
                 <Image src={avatar} alt={'iven avatar'} width={400}
@@ -77,11 +77,12 @@ export default function Home() {
                 currently use.
             </p>
 
-            <TechStack />
+            <TechStack/>
 
             <h2>Projects 🛠️</h2>
             <p>
-                During my free time, I love to program for <a href={'https://lvckyworld.net'} target={'_blank'}>LvckyWorld</a>!
+                During my free time, I love to program for <a href={'https://lvckyworld.net'}
+                                                              target={'_blank'}>LvckyWorld</a>!
                 Additionally, I actively try to contribute to open source projects or create my own.
                 {" "} I earnt with my projects on{" "}
                 <a href="https://github.com/lvckyapi" rel="noreferrer">
