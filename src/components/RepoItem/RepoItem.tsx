@@ -24,10 +24,10 @@ export default function RepoItem({name, description, stars, forks, language, own
                         {language}
                     </div>
 
-                    <p>
+                    <p className={"icon-stats"}>
                         <AiOutlineStar className="mr-1 w-4 h-4"/> {stars}
                     </p>
-                    <p>
+                    <p className={"icon-stats"}>
                         <BiGitRepoForked className="mr-1 w-4 h-4"/> {forks}
                     </p>
                 </div>

@@ -5,7 +5,11 @@
   @apply rounded-md border border-slate-400 hover:border-slate-700 dark:border-slate-800 dark:hover:border-slate-600;
 
   .stats {
-    @apply mt-auto flex flex-row gap-4;
+    @apply mt-auto flex flex-row gap-2;
     @apply text-gray-700 dark:text-gray-300 text-sm;
+
+    .icon-stats {
+      @apply flex flex-row gap-0;
+    }
   }
 }
