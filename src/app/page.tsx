@@ -1,113 +1,127 @@
-import Image from "next/image";
+'use client';
+import {motion} from "framer-motion";
+import TechItem from "../components/TechItem/TechItem";
+import {
+    SiDocker,
+    SiGit,
+    SiJavascript,
+    SiNextdotjs,
+    SiNodedotjs,
+    SiReact,
+    SiTailwindcss,
+    SiTypescript,
+    SiVisualstudiocode,
+    SiYarn
+} from "react-icons/si";
+import {useEffect, useState} from "react";
+import RepoItem from "../components/RepoItem/RepoItem";
 
 export default function Home() {
-  return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:size-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
 
-      <div className="relative z-[-1] flex place-items-center before:absolute before:h-[300px] before:w-full before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 sm:before:w-[480px] sm:after:w-[240px] before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
+    const [stats, setStats]: any = useState();
+    const [topRepos, setTopRepos]: any = useState();
 
-      <div className="mb-32 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
+    useEffect(() => {
+        (async () => {
+            let stats = localStorage.getItem('stats') as any;
+            let repos = localStorage.getItem('repos') as any;
+            const currentTime = new Date().getTime();
+            const expiryTime = 120 * 1000; // 120 seconds in milliseconds
+
+            if (!stats || !repos || currentTime - JSON.parse(stats).timestamp > expiryTime) {
+                stats = await fetch(`https://api.github-star-counter.workers.dev/user/lvckyapi`).then(res => res.json());
+                repos = await fetch(`https://api.github.com/users/lvckyapi/repos?type=owner&per_page=100`).then(res => res.json());
+
+                localStorage.setItem('stats', JSON.stringify({value: stats, timestamp: currentTime}));
+                localStorage.setItem('repos', JSON.stringify({value: repos, timestamp: currentTime}));
+            } else {
+                stats = JSON.parse(stats).value;
+                repos = JSON.parse(repos).value;
+            }
+
+            const topRepos = repos
+                .sort((a: Record<string, any>, b: Record<string, any>) => b.stargazers_count - a.stargazers_count)
+                .slice(0, 4);
+
+            setStats(stats);
+            setTopRepos(topRepos);
+        })();
+    }, []);
+
+    return (
+        <motion.div
+            initial={{opacity: 0, scale: 0.95}}
+            animate={{opacity: 1, scale: 1}}
+            exit={{opacity: 0, scale: 0.95}}
+            transition={{ease: "easeOut", duration: 0.15}}
+            className="mt-24 w-full mb-32"
         >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
+            <h1 className="mt-36 font-bold text-4xl md:text-5xl mb-4">Hey, I'm Iven 👋</h1>
+            <p className="text-gray-800 dark:text-gray-300 leading-6 tracking-wide mb-12">
+                I'm a self-taught software engineer from the United States. I'm currently pursuing full-stack web
+                development to create stunning user experiences on the front-end, and scalable and secure infrastructure
+                on the backend.
+            </p>
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
+            <h2 className="font-medium text-3xl mb-4">What I Do 💭</h2>
+            <p className="text-gray-800 dark:text-gray-300 leading-6 font-light tracking-wide mb-12">
+                I'm passionate about everything in technology; from designing and developing software, to understanding
+                how the many moving parts of the internet work together, to cybersecurity, programming, and so much
+                more. I strive to learn more about these things every day, and utilize my knowledge to further
+                understand <i>how</i> or <i>why</i> the technology around us works.
+            </p>
 
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Explore starter templates for Next.js.
-          </p>
-        </a>
+            <h2 className="font-medium text-3xl mb-4">Technologies 💻</h2>
+            <p className="text-gray-800 dark:text-gray-300 leading-6 font-light tracking-wide mb-6">
+                I use a variety of tools to streamline my development process and increase the quality of both my code,
+                and my projects. Below is a list of technologies and languages I've had experience with in the past, or
+                use currently.
+            </p>
+            <div
+                className="w-full flex flex-wrap flex-row justify-center p-1 border border-slate-800 rounded-md bg-white/10 dark:bg-black/10 mb-12">
+                <TechItem icon={SiTypescript} name="TypeScript"/>
+                <TechItem icon={SiVisualstudiocode} name="VSCode"/>
+                <TechItem icon={SiReact} name="React.js"/>
+                <TechItem icon={SiNodedotjs} name="Node.js"/>
+                <TechItem icon={SiJavascript} name="JavaScript"/>
+                <TechItem icon={SiYarn} name="Yarn"/>
+                <TechItem icon={SiNextdotjs} name="Next.js"/>
+                <TechItem icon={SiTailwindcss} name="TailwindCSS"/>
+                <TechItem icon={SiGit} name="Git"/>
+                <TechItem icon={SiDocker} name="Docker"/>
+            </div>
 
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-balance text-sm opacity-50">
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  );
+            <h2 className="font-medium text-3xl mb-4">Projects 🛠️</h2>
+            <p className="text-gray-800 dark:text-gray-300 leading-6 font-light tracking-wide mb-6">
+                In my free time, I enjoy creating open source projects on{" "}
+                <a
+                    href="https://github.com/lvckyapi"
+                    rel="noreferrer"
+                    className="font-semibold text-violet-500 hover:underline"
+                >
+                    GitHub
+                </a>
+                , so I can learn from others and share what I know. In total, all of my open sourced projects have earnt
+                me <span className="font-bold text-black dark:text-slate-200">{stats?.stars}</span> stars on GitHub,
+                and{" "}
+                <span className="font-bold text-black dark:text-slate-200">{stats?.forks}</span> forks. Below are some
+                of
+                my most popular repositories.
+            </p>
+            <div className="w-full grid grid-cols-1 md:grid-cols-2 grid-rows-2 md:grid-rows-1 mb-12 gap-2">
+                {topRepos?.map((repo: Record<string, any>) => {
+                    return (
+                        <RepoItem
+                            key={repo.name}
+                            name={repo.name}
+                            description={repo.description}
+                            stars={repo.stargazers_count}
+                            forks={repo.forks_count}
+                            language={repo.language}
+                        />
+                    );
+                })}
+            </div>
+        </motion.div>
+    );
 }
