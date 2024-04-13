@@ -1,0 +1,10 @@
+.git/
+.gitlab/
+
+LICENSE
+README.md
+.gitlab-ci.yml
+.gitignore
+.gitattributes
+
+.rsyncignore
