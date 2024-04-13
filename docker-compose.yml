@@ -1,0 +1,12 @@
+version: "3.7"
+
+services:
+  # TYPESCRIPT
+  typescript:
+    container_name: "${PROJECT_NAME}_typescript"
+    build:
+      dockerfile: docker/Dockerfile
+      context: .
+    restart: always
+    ports:
+      - "3000:3000"
