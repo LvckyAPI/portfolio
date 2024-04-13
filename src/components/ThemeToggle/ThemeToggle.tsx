@@ -14,7 +14,7 @@ const ThemeToggle = () => {
             storedTheme === "light" ? document.querySelector("html")?.classList.remove("dark") : null;
             storedTheme === "dark" ? document.querySelector("html")?.classList.add("dark") : null;
         }
-    }, []);
+    }, [theme]);
 
     const changeTheme = (theme: string) => {
         let newTheme = theme === "light" ? "dark" : "light";
