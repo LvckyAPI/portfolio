@@ -1,62 +1,18 @@
 'use client'
 import {AnimatePresence, motion} from "framer-motion";
-import {SiDiscord, SiGithub, SiGitlab, SiLinkedin, SiTwitter} from "react-icons/si";
+import {SiDiscord, SiGithub, SiGitlab, SiLinkedin} from "react-icons/si";
 import {FiMail} from "react-icons/fi";
-import Link from "next/link";
 import {usePathname} from "next/navigation";
 import ThemeToggle from "../ThemeToggle/ThemeToggle";
-import {classNames} from "../../util/classNames";
 import {useEffect, useState} from "react";
 import {HiMenu, HiX} from "react-icons/hi";
-import CustomTooltip from "../CustomTooltip";
+import LandingButton from "./mixin/LandingButton";
+import LinkButton from "./mixin/LinkButton";
+import MobileLandingButton from "./mixin/MobileLandingButton";
 
-const LandingButton = ({name, link, selected}: { name: string; link: string; selected: boolean }) => {
-    return (
-        <Link href={link} className={classNames(
-            selected
-                ? "bg-black/10 dark:bg-[#c8c8dc]/10"
-                : "bg-transparent hover:bg-gray-700/5 dark:hover:bg-[#c8c8dc]/5 dark:text-white",
-            "cursor-pointer px-4 py-2 text-sm rounded-md text-black/80 hover:text-black dark:text-white/80 dark:hover:text-white transition-all duration-75"
-        )}>
-            {name}
-        </Link>
-    );
-};
+import './_Navbar.scss';
 
-const MobileLandingButton = ({
-                                 name,
-                                 link,
-                                 selected,
-                                 onClick,
-                             }: {
-    name: string;
-    link: string;
-    selected: boolean;
-    onClick: () => void;
-}) => {
-    return (
-        <Link href={link} className={classNames(
-            selected ? "bg-black/10 dark:bg-[#c8c8dc]/10" : "bg-transparent dark:text-white",
-            "flex flex-grow justify-center border border-slate-800/30 cursor-pointer w-auto py-4 text-base text-black/80 dark:text-white/80 transition-all duration-75"
-        )} onClick={onClick}>
-
-            {name}
-
-        </Link>
-    );
-};
-
-const LinkButton = ({title, icon, href}: any) => {
-    return (
-        <CustomTooltip title={title} position={"top"} duration={250}>
-            <a target="_blank" rel="noreferrer" href={href}>
-                {icon}
-            </a>
-        </CustomTooltip>
-    );
-};
-
-const Navbar = () => {
+export default function Navbar() {
     const pathName = usePathname();
 
     const [mobileMenuOpen, setMenuOpen] = useState(false);
@@ -72,69 +28,54 @@ const Navbar = () => {
         void new Audio("/pop.mp3").play().catch(() => null);
     }, [pathName]);
 
-    return (
-        <>
+
+    return (<>
             <motion.div
-                className="hidden z-[999] fixed w-[90%] md:w-[50rem] md:flex flex-row justify-between items-center px-4 py-2 mt-4 md:mt-6 rounded-md bg-white/60 dark:bg-[#12181d]/60 border border-slate-800/50 backdrop-blur-lg">
-                <div className="flex flex-row items-center justify-between gap-2">
+                className="navbar">
+                <div className="landing-buttons">
                     <ThemeToggle/>
                     <LandingButton name="Home" link="/" selected={pathName === "/"}/>
                     <LandingButton name="Contact" link="/contact" selected={pathName === "/contact"}/>
                 </div>
 
-                <div className="flex flex-row items-center justify-center gap-2 xs:gap-4">
+                <div className="socials">
                     <LinkButton
                         title="GitLab"
                         href={"https://git.lvckyworld.dev/iven.s"}
-                        icon={
-                            <SiGitlab
-                                className="w-6 h-6 cursor-pointer hover:fill-white fill-gray-400 transition-colors"/>
-                        }
+                        icon={<SiGitlab className="icon second"/>}
                     />
                     <LinkButton
                         title="GitHub"
                         href={"https://github.com/lvckyapi"}
-                        icon={
-                            <SiGithub
-                                className="w-6 h-6 cursor-pointer hover:fill-white fill-gray-400 transition-colors"/>
-                        }
+                        icon={<SiGithub className="icon second"/>}
                     />
                     <LinkButton
                         title="LinkedIn"
                         href={"https://www.linkedin.com/in/iven-schlenther-996a84268/"}
-                        icon={
-                            <SiLinkedin
-                                className="w-6 h-6 cursor-pointer hover:fill-white fill-gray-400 transition-colors"/>
-                        }
+                        icon={<SiLinkedin className="icon second"/>}
                     />
                     <LinkButton
                         title="Discord"
                         href={"https://discord.com/users/466986428107063306"}
-                        icon={
-                            <SiDiscord
-                                className="w-6 h-6 cursor-pointer hover:fill-white fill-gray-400 transition-colors"/>
-                        }
+                        icon={<SiDiscord className="icon second"/>}
                     />
                     <LinkButton
                         title="Email"
                         href={"mailto:hello@schlenther.dev"}
-                        icon={
-                            <FiMail
-                                className="w-6 h-6 cursor-pointer hover:stroke-white stroke-gray-400 transition-colors"/>
-                        }
+                        icon={<FiMail className="icon"/>}
                     />
                 </div>
             </motion.div>
 
             <motion.div
-                className="md:hidden z-[990] fixed w-full flex flex-row justify-between items-center px-4 py-3 bg-white/60 dark:bg-[#12181d]/60 border-b border-slate-800/50 backdrop-blur-lg">
+                className="navbar-mobile">
                 <div className="flex flex-row items-center justify-between gap-2">
                     <ThemeToggle/>
                 </div>
 
-                <div className="flex flex-row items-center justify-center">
-                    <button onClick={toggleMenu} className="h-9 w-9 flex items-center justify-center">
-                        {!mobileMenuOpen ? <HiMenu className="w-7 h-7"/> : <HiX className="w-7 h-7"/>}
+                <div className="burger-menu">
+                    <button onClick={toggleMenu} className="btn">
+                        {!mobileMenuOpen ? <HiMenu className="icon"/> : <HiX className="icon"/>}
                     </button>
                 </div>
             </motion.div>
@@ -157,9 +98,9 @@ const Navbar = () => {
                             animate={{opacity: 1}}
                             exit={{opacity: 0}}
                             transition={{duration: 0.1, ease: "easeInOut"}}
-                            className="flex flex-col items-center justify-start mt-16 fixed w-full h-auto z-[700] bg-white dark:bg-[#090c0f] border-x border-b border-slate-800/30"
+                            className="mobile-menu"
                         >
-                            <div className="flex flex-row w-full justify-evenly">
+                            <div className="landing-container">
                                 <MobileLandingButton
                                     name="Home"
                                     link="/"
@@ -174,46 +115,31 @@ const Navbar = () => {
                                 />
                             </div>
 
-                            <div className="flex flex-row items-center justify-center gap-6 py-4">
+                            <div className="socials">
                                 <LinkButton
                                     title="GitLab"
                                     href={"https://git.lvckyworld.dev/iven.s"}
-                                    icon={
-                                        <SiGitlab
-                                            className="w-6 h-6 cursor-pointer"/>
-                                    }
+                                    icon={<SiGitlab className="icon"/>}
                                 />
                                 <LinkButton
                                     title="GitHub"
                                     href={"https://github.com/lvckyapi"}
-                                    icon={
-                                        <SiGithub
-                                            className="w-6 h-6 cursor-pointer"/>
-                                    }
+                                    icon={<SiGithub className="icon"/>}
                                 />
                                 <LinkButton
                                     title="LinkedIn"
                                     href={"https://www.linkedin.com/in/iven-schlenther-996a84268/"}
-                                    icon={
-                                        <SiLinkedin
-                                            className="w-6 h-6 cursor-pointer"/>
-                                    }
+                                    icon={<SiLinkedin className="icon"/>}
                                 />
                                 <LinkButton
                                     title="Discord"
                                     href={"https://discord.com/users/466986428107063306"}
-                                    icon={
-                                        <SiDiscord
-                                            className="w-6 h-6 cursor-pointer"/>
-                                    }
+                                    icon={<SiDiscord className="icon"/>}
                                 />
                                 <LinkButton
                                     title="Email"
                                     href={"mailto:hello@schlenther.dev"}
-                                    icon={
-                                        <FiMail
-                                            className="w-6 h-6 cursor-pointer"/>
-                                    }
+                                    icon={<FiMail className="icon"/>}
                                 />
                             </div>
                         </motion.div>
@@ -222,6 +148,4 @@ const Navbar = () => {
             </AnimatePresence>
         </>
     );
-};
-
-export default Navbar;
+}

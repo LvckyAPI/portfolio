@@ -1,0 +1,7 @@
+.mobile-landing-button {
+  @apply flex flex-grow justify-center border border-slate-800/30 cursor-pointer w-auto py-4 text-base text-black/80 dark:text-white/80 transition-all duration-75;
+  @apply bg-transparent dark:text-white;
+  &.selected {
+    @apply bg-black/10 dark:bg-[#c8c8dc]/10;
+  }
+}

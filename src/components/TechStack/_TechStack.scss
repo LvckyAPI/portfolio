@@ -1,0 +1,5 @@
+.tech-stack-container {
+  @apply w-full mb-12 flex flex-wrap flex-row justify-center p-1;
+  @apply bg-white/10 dark:bg-black/10;
+  @apply border border-slate-800 rounded-md;
+}
