@@ -5,7 +5,7 @@ import Navbar from "../components/Navbar/Navbar";
 import {useEffect} from "react";
 import {usePathname} from "next/navigation";
 
-const roboto = Roboto({weight: ["300"], subsets: ["latin"]});
+const roboto = Roboto({weight: ["400"], subsets: ["latin"]});
 
 export const metadata: Metadata = {
     title: "Iven Schlenther | Fullstack Developer",
@@ -44,7 +44,7 @@ export default function RootLayout({
         <body className={roboto.className}>
 
         <div
-            className="text-black dark:text-white flex flex-row justify-center w-full h-full bg-gradient-to-bl from-white to-[#fff] dark:from-black dark:to-[#2E1A37] min-h-screen">
+            className="text-black dark:text-white flex flex-row justify-center w-full h-full bg-gradient-to-bl from-white to-[#E9B5FF] dark:from-black dark:to-[#2E1A37] min-h-screen">
             <Navbar />
             <div className="w-[80%] md:w-[45rem]">
                 {children}

@@ -71,7 +71,7 @@ export default function Home() {
             className="mt-24 w-full mb-32"
         >
             <div className={'mt-36 mb-4 flex flex-row justify-center items-center'}>
-                <Image src={avatar} alt={'iven avatar'} width={400} className={'w-28 md:w-48 rounded-full outline shadow-lg shadow-purple-900'}/>
+                <Image src={avatar} alt={'iven avatar'} width={400} className={'w-28 md:w-48 rounded-full outline shadow-lg dark:shadow-purple-900 shadow-purple-300'}/>
             </div>
             <h1 className="mt-8 mb-4 font-bold text-4xl md:text-5xl">Hey, I'm Iven 👋</h1>
             <p className="text-gray-800 dark:text-gray-300 leading-6 tracking-wide mb-12">
@@ -85,7 +85,7 @@ export default function Home() {
                                                     target={'_blank'}>LvckyWorld</a>.
             </p>
 
-            <h2 className="font-medium text-3xl mb-4">What I Do 💭</h2>
+            <h2 className="font-medium text-3xl mb-4">What I Do 🤸</h2>
             <p className="text-gray-800 dark:text-gray-300 leading-6 font-light tracking-wide mb-12">
                 I have been interested in programming since I was 11 years old. I started with Java for Minecraft
                 plugins. I taught myself countless other programming languages. I love Docker and Linux and my favorite
