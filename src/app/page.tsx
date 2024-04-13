@@ -75,7 +75,7 @@ export default function Home() {
             </div>
             <h1 className="mt-8 mb-4 font-bold text-4xl md:text-5xl">Hey, I'm Iven 👋</h1>
             <p className="text-gray-800 dark:text-gray-300 leading-6 tracking-wide mb-12">
-                I am a passionate full stack web developer from Magdeburg, Germany 🇩🇪. I am currently doing an apprenticeship
+                I am a passionate full stack web developer from Magdeburg, Germany&nbsp;🇩🇪. I am currently doing an apprenticeship
                 at&nbsp;
                 <a className={'font-semibold text-violet-500 hover:underline'} href={'https://muensmedia.de'}
                    target={'_blank'}>MÜNSMEDIA GmbH</a>, also in
