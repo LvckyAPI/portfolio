@@ -16,21 +16,27 @@ export default function Home() {
         (async () => {
             let stats = localStorage.getItem('stats') as any;
             let repos = localStorage.getItem('repos') as any;
+            let repos2 = localStorage.getItem('repos') as any;
             const currentTime = new Date().getTime();
             const expiryTime = 120 * 1000; // 120 seconds in milliseconds
 
             if (!stats || !repos || currentTime - JSON.parse(stats).timestamp > expiryTime) {
                 stats = await fetch(`https://api.github-star-counter.workers.dev/user/lvckyapi`).then(res => res.json());
                 repos = await fetch(`https://api.github.com/users/lvckyapi/repos?type=owner&per_page=100`).then(res => res.json());
+                repos2 = await fetch(`https://api.github.com/users/lvckyworld/repos?type=owner&per_page=100`).then(res => res.json());
 
                 localStorage.setItem('stats', JSON.stringify({value: stats, timestamp: currentTime}));
                 localStorage.setItem('repos', JSON.stringify({value: repos, timestamp: currentTime}));
+                localStorage.setItem('repos2', JSON.stringify({value: repos, timestamp: currentTime}));
             } else {
                 stats = JSON.parse(stats).value;
                 repos = JSON.parse(repos).value;
+                repos2 = JSON.parse(repos2).value;
             }
 
-            const topRepos = repos
+            let repoMerge = [...repos, ...repos2];
+
+            const topRepos = repoMerge
                 .sort((a: Record<string, any>, b: Record<string, any>) => b.stargazers_count - a.stargazers_count)
                 .slice(0, 4);
 
