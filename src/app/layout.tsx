@@ -4,6 +4,7 @@ import "./globals.scss";
 import Navbar from "../components/Navbar/Navbar";
 import {useEffect} from "react";
 import {usePathname} from "next/navigation";
+import Footer from "../components/Footer/Footer";
 
 const roboto = Roboto({weight: ["400"], subsets: ["latin"]});
 
@@ -48,6 +49,7 @@ export default function RootLayout({
             <Navbar />
             <div className="w-[80%] md:w-[45rem]">
                 {children}
+                <Footer />
             </div>
         </div>
         </body>
