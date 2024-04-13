@@ -9,11 +9,12 @@ interface RepoProps {
     stars: number;
     forks: number;
     language: "TypeScript" | "Python";
+    owner: string;
 }
 
-export default function RepoItem({name, description, stars, forks, language}: RepoProps) {
+export default function RepoItem({name, description, stars, forks, language, owner}: RepoProps) {
     return (
-        <a href={`https://github.com/lvckyapi/${name}`} rel="noreferrer" target="_blank">
+        <a href={`https://github.com/${owner}/${name}`} rel="noreferrer" target="_blank">
             <div
                 className="repo-item">
                 <h1 className="font-semibold mb-1">{name}</h1>

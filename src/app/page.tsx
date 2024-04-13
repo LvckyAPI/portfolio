@@ -110,6 +110,7 @@ export default function Home() {
                             stars={repo.stargazers_count}
                             forks={repo.forks_count}
                             language={repo.language}
+                            owner={repo.owner.login}
                         />
                     );
                 })}
