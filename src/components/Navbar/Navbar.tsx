@@ -11,6 +11,7 @@ import LinkButton from "./mixin/LinkButton";
 import MobileLandingButton from "./mixin/MobileLandingButton";
 
 import './_Navbar.scss';
+import {CopyrightHandler} from "../../core/util/CopyrightHandler";
 
 export default function Navbar() {
     const pathName = usePathname();
@@ -26,6 +27,9 @@ export default function Navbar() {
         }
 
         void new Audio("/pop.mp3").play().catch(() => null);
+
+        CopyrightHandler.printLvckyWorldBrandingToConsole();
+        (document.querySelector('html') as HTMLElement).insertAdjacentHTML('afterbegin', CopyrightHandler.getLvckyWorldBrandingForHtml()) ;
     }, [pathName]);
 
 

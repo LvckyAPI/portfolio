@@ -6,7 +6,6 @@ import RepoItem from "../components/RepoItem/RepoItem";
 import Image from "next/image";
 import "./style/main-page.scss";
 import TechStack from "../components/TechStack/TechStack";
-import {getSiteNoticeInfo} from "../core/eRecht24/FetchER24";
 import {getGitHubStats} from "../core/github/FetchGitHubStats";
 
 export default function Home() {
