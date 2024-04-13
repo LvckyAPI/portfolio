@@ -1,6 +1,7 @@
 import {IconType} from "react-icons";
 import React from "react";
 import CustomTooltip from "../CustomTooltip";
+import './_TechItem.scss';
 
 interface TechProps {
     name: string;
@@ -9,11 +10,10 @@ interface TechProps {
 
 
 export default function TechItem({name, icon}: TechProps) {
-
     return (
-        <li className="flex p-2">
+        <li className="tech-item">
             <CustomTooltip title={name} position={"top"} duration={250}>
-                {icon({className: "h-6 w-6"})}
+                {icon({className: "icon"})}
             </CustomTooltip>
         </li>
     );

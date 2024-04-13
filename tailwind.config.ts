@@ -14,13 +14,11 @@ const config: Config = {
                 "gradient-conic":
                     "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
             },
-            extend: {
-                screens: {
-                    'xs': '445px',
-                },
-                animation: {
-                    'spin-slow': 'spin 2s linear infinite',
-                },
+            screens: {
+                'xs': '445px',
+            },
+            animation: {
+                'spin-slow': 'spin 2s linear infinite',
             },
         },
     },

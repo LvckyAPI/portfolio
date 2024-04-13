@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 import {FiMoon, FiSun} from "react-icons/fi";
 
-const ThemeToggle = () => {
+export default function ThemeToggle() {
     const [theme, setTheme] = useState<string>("dark");
 
     useEffect(() => {
@@ -31,10 +31,8 @@ const ThemeToggle = () => {
             className="p-2 rounded-md bg-transparent hover:bg-black/5 dark:hover:bg-white/5 cursor-pointer"
             onClick={() => changeTheme(theme)}
         >
-            {theme === "light" && <FiSun className="text-black w-6 h-6 xs:w-5 xs:h-5"/>}
-            {theme === "dark" && <FiMoon className="text-white w-6 h-6 xs:w-5 xs:h-5"/>}
+            {theme === "light" && <FiSun className="text-black w-7 h-7 xs:w-6 xs:h-6"/>}
+            {theme === "dark" && <FiMoon className="text-white w-7 h-7 xs:w-6 xs:h-6"/>}
         </button>
     );
-};
-
-export default ThemeToggle;
+}

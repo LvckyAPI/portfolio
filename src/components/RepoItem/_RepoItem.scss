@@ -1,0 +1,11 @@
+.repo-item {
+  @apply bg-white/10 dark:bg-black/10;
+  @apply transition-colors duration-75;
+  @apply flex flex-col h-36 p-4 cursor-pointer;
+  @apply rounded-md border border-slate-400 hover:border-slate-700 dark:border-slate-800 dark:hover:border-slate-600;
+
+  .stats {
+    @apply mt-auto flex flex-row gap-4;
+    @apply text-gray-700 dark:text-gray-300 text-sm;
+  }
+}

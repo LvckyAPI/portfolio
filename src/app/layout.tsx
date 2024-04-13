@@ -1,9 +1,7 @@
 import type {Metadata} from "next";
 import {Roboto} from "next/font/google";
-import "./globals.scss";
+import "./style/globals.scss";
 import Navbar from "../components/Navbar/Navbar";
-import {useEffect} from "react";
-import {usePathname} from "next/navigation";
 import Footer from "../components/Footer/Footer";
 
 const roboto = Roboto({weight: ["400"], subsets: ["latin"]});
@@ -17,10 +15,9 @@ export const metadata: Metadata = {
         type: "website",
         locale: "en_US",
         url: "https://schlenther.dev",
-
         images: [
             {
-                url: "https://iven:schlenther@staging.schlenther.dev/avatar.png",
+                url: "https://schlenther.dev/avatar.png",
                 width: 1024,
                 height: 1024,
                 alt: "Iven Schlenther | Fullstack Developer",
