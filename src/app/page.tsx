@@ -1,20 +1,34 @@
 'use client';
 import {motion} from "framer-motion";
 import TechItem from "../components/TechItem/TechItem";
+import avatar from "../../public/avatar.png";
 import {
     SiDocker,
-    SiGit,
+    SiExpress,
+    SiGithub,
+    SiGitlab,
+    SiGnubash,
     SiJavascript,
+    SiJetbrains,
+    SiLaravel,
+    SiLinux,
     SiNextdotjs,
+    SiNginx,
     SiNodedotjs,
+    SiOpenjdk,
+    SiPhp,
+    SiPython,
     SiReact,
+    SiSass,
     SiTailwindcss,
+    SiTraefikproxy,
     SiTypescript,
     SiVisualstudiocode,
-    SiYarn
+    SiWindows10,
 } from "react-icons/si";
 import {useEffect, useState} from "react";
 import RepoItem from "../components/RepoItem/RepoItem";
+import Image from "next/image";
 
 export default function Home() {
 
@@ -56,19 +70,28 @@ export default function Home() {
             transition={{ease: "easeOut", duration: 0.15}}
             className="mt-24 w-full mb-32"
         >
-            <h1 className="mt-36 font-bold text-4xl md:text-5xl mb-4">Hey, I'm Iven 👋</h1>
+            <div className={'mt-36 mb-4 flex flex-row justify-center items-center'}>
+                <Image src={avatar} alt={'iven avatar'} width={400} className={'w-28 md:w-48 rounded-full outline shadow-lg shadow-purple-900'}/>
+            </div>
+            <h1 className="mt-8 mb-4 font-bold text-4xl md:text-5xl">Hey, I'm Iven 👋</h1>
             <p className="text-gray-800 dark:text-gray-300 leading-6 tracking-wide mb-12">
-                I'm a self-taught software engineer from the United States. I'm currently pursuing full-stack web
-                development to create stunning user experiences on the front-end, and scalable and secure infrastructure
-                on the backend.
+                I am a passionate full stack web developer from Magdeburg. I am currently doing an apprenticeship
+                at&nbsp;
+                <a className={'font-semibold text-violet-500 hover:underline'} href={'https://muensmedia.de'}
+                   target={'_blank'}>MÜNSMEDIA GmbH</a>, also in
+                Magdeburg.
+                I also run my own project called <a className={'font-semibold text-violet-500 hover:underline'}
+                                                    href={'https://lvckyworld.net'}
+                                                    target={'_blank'}>LvckyWorld</a>.
             </p>
 
             <h2 className="font-medium text-3xl mb-4">What I Do 💭</h2>
             <p className="text-gray-800 dark:text-gray-300 leading-6 font-light tracking-wide mb-12">
-                I'm passionate about everything in technology; from designing and developing software, to understanding
-                how the many moving parts of the internet work together, to cybersecurity, programming, and so much
-                more. I strive to learn more about these things every day, and utilize my knowledge to further
-                understand <i>how</i> or <i>why</i> the technology around us works.
+                I have been interested in programming since I was 11 years old. I started with Java for Minecraft
+                plugins. I taught myself countless other programming languages. I love Docker and Linux and my favorite
+                programming language is TypeScript. I build APIs, web applications, websites, bots and smaller scripts
+                as well as automatic deployments (CI/CD) for GitLab and GitHub. I also have a lot of experience in Linux
+                system/server administration.
             </p>
 
             <h2 className="font-medium text-3xl mb-4">Technologies 💻</h2>
@@ -79,21 +102,36 @@ export default function Home() {
             </p>
             <div
                 className="w-full flex flex-wrap flex-row justify-center p-1 border border-slate-800 rounded-md bg-white/10 dark:bg-black/10 mb-12">
-                <TechItem icon={SiTypescript} name="TypeScript"/>
-                <TechItem icon={SiVisualstudiocode} name="VSCode"/>
-                <TechItem icon={SiReact} name="React.js"/>
+                <TechItem icon={SiGitlab} name="GitLab"/>
+                <TechItem icon={SiGithub} name="GitHub"/>
+                <TechItem icon={SiDocker} name="Docker"/>
+                <TechItem icon={SiLinux} name="Linux & Server"/>
+                <TechItem icon={SiWindows10} name="Windows 11 & Server"/>
+                <TechItem icon={SiTraefikproxy} name="traefik Proxy"/>
+                <TechItem icon={SiNginx} name="NGINX"/>
                 <TechItem icon={SiNodedotjs} name="Node.js"/>
+                <TechItem icon={SiOpenjdk} name="Java"/>
                 <TechItem icon={SiJavascript} name="JavaScript"/>
-                <TechItem icon={SiYarn} name="Yarn"/>
+                <TechItem icon={SiTypescript} name="TypeScript"/>
+                <TechItem icon={SiPhp} name="PHP"/>
+                <TechItem icon={SiGnubash} name="Bash/Shell"/>
+                <TechItem icon={SiPython} name="Python"/>
+                <TechItem icon={SiJetbrains} name="JetBrains IDEAS"/>
+                <TechItem icon={SiVisualstudiocode} name="Visual Studio Code"/>
+                <TechItem icon={SiLaravel} name="Laravel"/>
+                <TechItem icon={SiExpress} name="Express.js"/>
+                <TechItem icon={SiReact} name="React"/>
                 <TechItem icon={SiNextdotjs} name="Next.js"/>
                 <TechItem icon={SiTailwindcss} name="TailwindCSS"/>
-                <TechItem icon={SiGit} name="Git"/>
-                <TechItem icon={SiDocker} name="Docker"/>
+                <TechItem icon={SiSass} name="SASS/SCSS"/>
             </div>
 
             <h2 className="font-medium text-3xl mb-4">Projects 🛠️</h2>
             <p className="text-gray-800 dark:text-gray-300 leading-6 font-light tracking-wide mb-6">
-                In my free time, I enjoy creating open source projects on{" "}
+                In my free time I mostly program for <a className={'font-semibold text-violet-500 hover:underline'}
+                                                        href={'https://lvckyworld.net'} target={'_blank'}>LvckyWorld</a>.
+                However, I also try to participate in open source
+                projects or create some myself.{" "} I earnt with my projects on{" "}
                 <a
                     href="https://github.com/lvckyapi"
                     rel="noreferrer"
@@ -101,8 +139,7 @@ export default function Home() {
                 >
                     GitHub
                 </a>
-                , so I can learn from others and share what I know. In total, all of my open sourced projects have earnt
-                me <span className="font-bold text-black dark:text-slate-200">{stats?.stars}</span> stars on GitHub,
+                {" "}me <span className="font-bold text-black dark:text-slate-200">{stats?.stars}</span> stars
                 and{" "}
                 <span className="font-bold text-black dark:text-slate-200">{stats?.forks}</span> forks. Below are some
                 of

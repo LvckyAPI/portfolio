@@ -36,9 +36,11 @@ a {
 }
 
 .dark .tippy-tooltip-content {
+  @apply p-2;
   color: #fff;
 }
 
 .tippy-tooltip-content {
+  @apply p-2;
   color: #000;
 }

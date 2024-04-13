@@ -1,6 +1,6 @@
 'use client'
 import {AnimatePresence, motion} from "framer-motion";
-import {SiGithub, SiLinkedin, SiTwitter} from "react-icons/si";
+import {SiDiscord, SiGithub, SiGitlab, SiLinkedin, SiTwitter} from "react-icons/si";
 import {FiMail} from "react-icons/fi";
 import Link from "next/link";
 import {usePathname} from "next/navigation";
@@ -84,6 +84,14 @@ const Navbar = () => {
 
                 <div className="flex flex-row items-center justify-center gap-2 xs:gap-4">
                     <LinkButton
+                        title="GitLab"
+                        href={"https://git.lvckyworld.dev/iven.s"}
+                        icon={
+                            <SiGitlab
+                                className="w-6 h-6 cursor-pointer hover:fill-white fill-gray-400 transition-colors"/>
+                        }
+                    />
+                    <LinkButton
                         title="GitHub"
                         href={"https://github.com/lvckyapi"}
                         icon={
@@ -92,18 +100,18 @@ const Navbar = () => {
                         }
                     />
                     <LinkButton
-                        title="Twitter"
-                        href={"https://twitter.com/lvckyapi"}
-                        icon={
-                            <SiTwitter
-                                className="w-6 h-6 cursor-pointer hover:fill-white fill-gray-400 transition-colors"/>
-                        }
-                    />
-                    <LinkButton
                         title="LinkedIn"
                         href={"https://www.linkedin.com/in/iven-schlenther-996a84268/"}
                         icon={
                             <SiLinkedin
+                                className="w-6 h-6 cursor-pointer hover:fill-white fill-gray-400 transition-colors"/>
+                        }
+                    />
+                    <LinkButton
+                        title="Discord"
+                        href={"https://discord.com/users/466986428107063306"}
+                        icon={
+                            <SiDiscord
                                 className="w-6 h-6 cursor-pointer hover:fill-white fill-gray-400 transition-colors"/>
                         }
                     />
