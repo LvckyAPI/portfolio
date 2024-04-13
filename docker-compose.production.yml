@@ -1,0 +1,30 @@
+services:
+  # TYPESCRIPT
+  typescript:
+    container_name: "${PROJECT_NAME}_typescript"
+    build:
+      dockerfile: docker/Dockerfile
+      context: .
+    restart: always
+    #    ports:
+    #      - "3000:3000"
+    labels:
+      - "traefik.enable=true"
+
+      # HTTPS
+      - "traefik.http.routers.${PROJECT_NAME}_typescript.rule=Host(`${PROJECT_BASE_URL}`)"
+      - "traefik.http.services.${PROJECT_NAME}_typescript.loadbalancer.server.port=3000"
+      - "traefik.http.routers.${PROJECT_NAME}_typescript.middlewares=redirect-to-https"
+
+      # Enable HTTPS with Let's Encrypt
+      - "traefik.http.routers.${PROJECT_NAME}_typescript.tls=true"
+      - "traefik.http.routers.${PROJECT_NAME}_typescript.tls.certresolver=letsencrypt"
+
+      - "traefik.docker.network=lvckyworld_proxy"
+    networks:
+      - lvckyworld_proxy
+      - default
+
+networks:
+  lvckyworld_proxy:
+    external: true

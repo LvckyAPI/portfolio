@@ -48,3 +48,28 @@ deploy:staging:
     - runssh docker compose up typescript -d --build --remove-orphans
   only:
     - /^(deploy-dev-)\d{8}.\d{4}$/
+
+deploy:production:
+  stage: deploy
+  extends: deploy:staging
+  environment:
+    name: 'production'
+    url: https://schlenther.dev
+  variables:
+    SERVER_PATH: '/home/deployer/schlenther.dev/schlenther.dev-production'
+    MNTDIR: '/mnt/schlenther.dev/schlenther.dev-production'
+  before_script:
+    - ls -la ${FOLDER_TO_SYNC}
+
+    # remove docker .env default file
+    - rm .env
+    # copy .env file from GitLab CI-Settings
+    - cp ${PRODUCTION_ENV} ./.env
+
+    # remove docker-compose.yml default file
+    - rm docker-compose.yml
+
+    # replace docker-compose.yml with docker-compose.production.yml
+    - mv docker-compose.production.yml docker-compose.yml
+  only:
+    - /^(deploy-prod-)\d{8}.\d{4}$/
