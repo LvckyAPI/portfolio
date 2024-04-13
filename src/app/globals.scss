@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 /* width */
-.dark ::-webkit-scrollbar {
+::-webkit-scrollbar {
   width: 0.65rem;
 }
 
@@ -21,6 +21,22 @@
 /* Handle on hover */
 .dark ::-webkit-scrollbar-thumb:hover {
   background: #381d46;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: rgb(241, 209, 255);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(234, 179, 255);
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(232, 163, 255);
 }
 
 html,
