@@ -1,10 +1,10 @@
 import nodeCache from "node-cache";
 
 /**
- * Cache manager for eR24Fetch
+ * Cache manager for GitHub API requests.
  * TTL is set to 300 seconds
  */
-export class eR24Cache {
+export class GitHubCache {
     private static cache = new nodeCache({stdTTL: 300});
 
     /**

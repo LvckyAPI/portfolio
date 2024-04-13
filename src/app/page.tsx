@@ -6,6 +6,8 @@ import RepoItem from "../components/RepoItem/RepoItem";
 import Image from "next/image";
 import "./style/main-page.scss";
 import TechStack from "../components/TechStack/TechStack";
+import {getSiteNoticeInfo} from "../core/eRecht24/FetchER24";
+import {getGitHubStats} from "../core/github/FetchGitHubStats";
 
 export default function Home() {
 
@@ -13,40 +15,8 @@ export default function Home() {
     const [topRepos, setTopRepos]: any = useState();
 
     useEffect(() => {
-        (async () => {
-            let stats = localStorage.getItem('stats') as any;
-            let stats2 = localStorage.getItem('stats2') as any;
-            let repos = localStorage.getItem('repos') as any;
-            let repos2 = localStorage.getItem('repos2') as any;
-            const currentTime = new Date().getTime();
-            const expiryTime = 120 * 1000; // 120 seconds in milliseconds
-
-            if (!stats || !repos || currentTime - JSON.parse(stats).timestamp > expiryTime) {
-                stats = await fetch(`https://api.github-star-counter.workers.dev/user/lvckyapi`).then(res => res.json());
-                stats2 = await fetch(`https://api.github-star-counter.workers.dev/user/lvckyworld`).then(res => res.json());
-                repos = await fetch(`https://api.github.com/users/lvckyapi/repos?type=owner&per_page=100`).then(res => res.json());
-                repos2 = await fetch(`https://api.github.com/users/lvckyworld/repos?type=owner&per_page=100`).then(res => res.json());
-
-                localStorage.setItem('stats', JSON.stringify({value: stats, timestamp: currentTime}));
-                localStorage.setItem('stats2', JSON.stringify({value: stats2, timestamp: currentTime}));
-                localStorage.setItem('repos', JSON.stringify({value: repos, timestamp: currentTime}));
-                localStorage.setItem('repos2', JSON.stringify({value: repos2, timestamp: currentTime}));
-            } else {
-                stats = JSON.parse(stats).value;
-                stats = JSON.parse(stats2).value;
-                repos = JSON.parse(repos).value;
-                repos2 = JSON.parse(repos2).value;
-            }
-
-            let repoMerge = [...repos, ...repos2];
-
-            const topRepos = repoMerge
-                .sort((a: Record<string, any>, b: Record<string, any>) => b.stargazers_count - a.stargazers_count)
-                .slice(0, 4);
-
-            setStats({stars: stats2.stars + stats.stars, forks: stats2.forks + stats.forks});
-            setTopRepos(topRepos);
-        })();
+        getGitHubStats().then(res => setStats(res.stats));
+        getGitHubStats().then(res => setTopRepos(res.topRepos));
     }, []);
 
     return (
