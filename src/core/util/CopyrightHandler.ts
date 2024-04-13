@@ -15,7 +15,7 @@ export class CopyrightHandler {
     "=:       ++*-    ***= .+**= -*+=       =   %cThis website is made with ❤️ by LvckyWorld %c
     "=:      :***     ***:.+***-.***.       =   %cIt's based on Next.js and contains TailwindCSS %c
     "=:      =**+     ***-+***+--+*=        =   %cDo you want to visit us? https://lvckyworld.net %c
-    "=:      +**=     ***+**=*****+         =
+    "=:      +**=     ***+**=*****+         =   %cThe design is inspired by https://cnrad.dev/ https://github.com/cnrad/cnrad.dev %c
     "=:    :+****=+*+=*****=.*****:         =
     "=:   .:+****+==--+***+. +***-          =
     "=:      ..       :++=   +**=           =
@@ -26,7 +26,7 @@ export class CopyrightHandler {
     "=-:::::::::::::::::::::::::::::::::::::=
     `;
 
-        console.log(logo, styleLogo, styleText, styleLogo, styleText, styleLogo, styleText, styleLogo);
+        console.log(logo, styleLogo, styleText, styleLogo, styleText, styleLogo, styleText, styleLogo, styleText, styleLogo);
     }
 
     public static getLvckyWorldBrandingForHtml() {
@@ -43,8 +43,8 @@ export class CopyrightHandler {
     "=:       ++*-    ***= .+**= -*+=       =   This website is made with ❤️ by LvckyWorld
     "=:      :***     ***:.+***-.***.       =   It's based on Next.js and contains TailwindCSS
     "=:      =**+     ***-+***+--+*=        =   Do you want to visit us? https://lvckyworld.net
-    "=:      +**=     ***+**=*****+         =
-    "=:    :+****=+*+=*****=.*****:         =
+    "=:      +**=     ***+**=*****+         =   The design is inspired by https://cnrad.dev/ https://github.com/cnrad/cnrad.dev
+    "=:    :+****=+*+=*****=.*****:         =   
     "=:   .:+****+==--+***+. +***-          =
     "=:      ..       :++=   +**=           =
     "=:                     :+=:            =
