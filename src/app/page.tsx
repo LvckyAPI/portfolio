@@ -27,7 +27,7 @@ export default function Home() {
             className="lw-content-container home"
         >
             <div className={'avatar-container'}>
-                <Image src={avatar} alt={'iven avatar'} width={400}
+                <Image src={avatar} alt={'iven avatar'} width={192}
                        className={'avatar'} draggable={false}/>
             </div>
             <h1>Hey, I'm Iven 👋</h1>
