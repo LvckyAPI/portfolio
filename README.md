@@ -3,6 +3,17 @@
 This is the source code for my website [https://schlenther.dev](https://schlenther.dev).  
 The design of this portfolio is fully inspired by [@cnrad](https://github.com/cnrad/cnrad.dev).
 
+## General information
+
+Conrad's contact form uses Discord webhooks, while I use SMTP (email). The site notice comes
+from [eRecht24](https://e-rech24.de).
+
+While Conrad uses the classic page structure and inline css classes (tailwind), I mostly use SCSS with tailwind and the
+app structure.
+I have also added a cache for external API requests, as well as ratelimit and a honeypot.
+My version does not pass on any client information like IP-Addresses to third parties and is therefore EU-DSGVO (GDPR) and GER BDSG
+compliant.
+
 ## How to run this locally?
 
 1. Clone this repository
