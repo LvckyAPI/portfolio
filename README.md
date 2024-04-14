@@ -27,6 +27,13 @@ My version does not pass on any client information like IP-Addresses to third pa
 and GER BDSG
 compliant.
 
+## Lighthouse
+
+| Mobile | Desktop |
+|--------|---------|
+| ![mlh](http://i.lvckyworld.net/up/688238d95f40f2ce0dd4cfe1ced53525.png) | ![dlh](http://i.lvckyworld.net/up/d6f902371db67a467427c04ac5a5dd30.png) |
+
+
 ## Configuration
 
 To configure the mailer, you need to edit the `.env` file in the root directory of the project.  
@@ -48,6 +55,8 @@ eRecht24 keys are stored there as well.
 
 ## Deployment
 
+<div align=center>
+
 This website is NOT deployed to vercel.  
 This website is deployed to a KVM with Docker and Docker Compose.
 
@@ -61,6 +70,8 @@ flowchart TD
     E --> F[Rebuild Docker Containers]
     F --> G[Start Docker Containers]
 ```
+
+</div>
 
 ## Original Repo
 
