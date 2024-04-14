@@ -1,7 +1,7 @@
 'use client';
 import {motion} from "framer-motion";
 import {FiMail} from "react-icons/fi";
-import {SiDiscord, SiInstagram} from "react-icons/si";
+import {SiDiscord, SiGithub, SiGitlab, SiLinkedin} from "react-icons/si";
 import ContactLink from "../../components/Contact/ContactLink";
 import MessageComponent from "../../components/Contact/MessageComponent";
 import TimeStatus from "../../components/Contact/TimeStatus";
@@ -27,27 +27,35 @@ export default function ContactPage() {
 
             <div className="contact-container">
                 <MessageComponent/>
-
                 <div className="socials">
                     <ContactLink
-                        name="@lvckyapi"
+                        name="GitLab"
+                        link={"https://git.lvckyworld.dev/iven.s"}
+                        icon={<SiGitlab className="icon"/>}
+                    />
+                    <ContactLink
+                        name="GitHub"
+                        link={"https://github.com/lvckyapi"}
+                        icon={<SiGithub className="icon"/>}
+                    />
+                    <ContactLink
+                        name="LinkedIn"
+                        link={"https://www.linkedin.com/in/iven-schlenther-996a84268/"}
+                        icon={<SiLinkedin className="icon"/>}
+                    />
+                    <ContactLink
+                        name="Discord"
+                        link={"https://discord.com/users/466986428107063306"}
                         icon={<SiDiscord className="icon"/>}
-                        link="https://discord.com/users/466986428107063306"
                     />
-
                     <ContactLink
-                        name="@lvckyapi"
-                        icon={<SiInstagram className="icon"/>}
-                        link="https://instagram.com/lvckyapi"
-                    />
-
-                    <ContactLink
-                        name="hello@schlenther.dev"
+                        name="Email"
+                        link={"mailto:hello@schlenther.dev"}
                         icon={<FiMail className="icon"/>}
-                        link="mailto:hello@schlenther.dev"
                     />
                 </div>
             </div>
         </motion.div>
-    );
+    )
+        ;
 }
