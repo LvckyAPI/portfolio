@@ -1,6 +1,7 @@
 'use server';
 import "dotenv/config";
 import * as nodemailer from 'nodemailer';
+import {MailOptions} from "nodemailer/lib/smtp-transport";
 
 
 const transporter = nodemailer.createTransport({
@@ -36,8 +37,8 @@ export async function sendEmail(replyTo: string, message: string, subject: strin
         if ((process.env.MAIL_HOST)?.includes('example.com')) resolve(false); // don't send email if mail host is example.com (for testing purposes)
 
         const date = Date.now();
-        let mailOptions = {
-            from: process.env.MAIL_USERNAME,
+        let mailOptions: MailOptions = {
+            from: `${process.env.MAIL_FROM_NAME} <${process.env.MAIL_USERNAME}>`,
             to: 'hello@schlenther.dev',
             replyTo: sanitizeEmailHeaders(replyTo),
             subject: `[SCHLENTHER.DEV] ${sanitizeEmailHeaders(subject)} #${Math.floor(date / 1000)}`,
