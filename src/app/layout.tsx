@@ -41,7 +41,7 @@ export default function RootLayout({
         <body className={roboto.className}>
 
         <div
-            className="text-black dark:text-white flex flex-row justify-center w-full h-full bg-gradient-to-bl from-white to-[#EFCAFF] dark:from-black dark:to-[#2E1A37] min-h-screen">
+            className="lw-site-container">
             <Navbar/>
             <div className="w-[80%] md:w-[45rem]">
                 {children}
