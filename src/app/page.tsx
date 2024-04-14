@@ -28,7 +28,7 @@ export default function Home() {
         >
             <div className={'avatar-container'}>
                 <Image src={avatar} alt={'iven avatar'} width={400}
-                       className={'avatar'}/>
+                       className={'avatar'} draggable={false}/>
             </div>
             <h1>Hey, I'm Iven 👋</h1>
             <p>

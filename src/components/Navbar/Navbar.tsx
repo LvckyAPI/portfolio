@@ -38,6 +38,21 @@ export default function Navbar() {
 
         void new Audio("/pop.mp3").play().catch(() => null);
 
+        let lastKeyPressTime = 0;
+        let lastKeyPressed = '';
+
+        window.addEventListener('keydown', function (event) {
+            if (lastKeyPressed === 'l' && event.key === 'w') {
+                const currentTime = new Date().getTime();
+                if (currentTime - lastKeyPressTime <= 5000) {
+                    console.log('Jaaaa, LvckyWorld 💜');
+                    window.open('https://lvckyworld.net', '_blank');
+                }
+            }
+            lastKeyPressTime = new Date().getTime();
+            lastKeyPressed = event.key;
+        });
+
         CopyrightHandler.printLvckyWorldBrandingToConsole();
         const branding = CopyrightHandler.getLvckyWorldBrandingForHtml();
         if (!document?.querySelector('html')?.innerHTML.includes(branding)) {
