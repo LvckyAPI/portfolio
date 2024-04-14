@@ -11,7 +11,7 @@ import LinkButton from "./mixin/LinkButton";
 import MobileLandingButton from "./mixin/MobileLandingButton";
 
 import './_Navbar.scss';
-import {CopyrightHandler} from "../../core/util/CopyrightHandler";
+import {runHeaderScripts} from "./mixin/RunHeaderScripts";
 
 export default function Navbar() {
     const pathName = usePathname();
@@ -22,16 +22,8 @@ export default function Navbar() {
     };
 
     useEffect(() => {
-        if (typeof window === "undefined") {
-            return;
-        }
-
-        void new Audio("/pop.mp3").play().catch(() => null);
-
-        CopyrightHandler.printLvckyWorldBrandingToConsole();
-        (document.querySelector('html') as HTMLElement).insertAdjacentHTML('afterbegin', CopyrightHandler.getLvckyWorldBrandingForHtml()) ;
+        runHeaderScripts();
     }, [pathName]);
-
 
     return (<>
             <motion.div
@@ -44,31 +36,7 @@ export default function Navbar() {
                 </div>
 
                 <div className="socials">
-                    <LinkButton
-                        title="GitLab"
-                        href={"https://git.lvckyworld.dev/iven.s"}
-                        icon={<SiGitlab className="icon second"/>}
-                    />
-                    <LinkButton
-                        title="GitHub"
-                        href={"https://github.com/lvckyapi"}
-                        icon={<SiGithub className="icon second"/>}
-                    />
-                    <LinkButton
-                        title="LinkedIn"
-                        href={"https://www.linkedin.com/in/iven-schlenther-996a84268/"}
-                        icon={<SiLinkedin className="icon second"/>}
-                    />
-                    <LinkButton
-                        title="Discord"
-                        href={"https://discord.com/users/466986428107063306"}
-                        icon={<SiDiscord className="icon second"/>}
-                    />
-                    <LinkButton
-                        title="Email"
-                        href={"mailto:hello@schlenther.dev"}
-                        icon={<FiMail className="icon"/>}
-                    />
+                    <LinkButtons/>
                 </div>
             </motion.div>
 
@@ -79,7 +47,7 @@ export default function Navbar() {
                 </div>
 
                 <div className="burger-menu">
-                    <button onClick={toggleMenu} className="btn">
+                    <button onClick={toggleMenu} className="btn" aria-label={'open burger menu'}>
                         {!mobileMenuOpen ? <HiMenu className="icon"/> : <HiX className="icon"/>}
                     </button>
                 </div>
@@ -127,31 +95,7 @@ export default function Navbar() {
                             </div>
 
                             <div className="socials">
-                                <LinkButton
-                                    title="GitLab"
-                                    href={"https://git.lvckyworld.dev/iven.s"}
-                                    icon={<SiGitlab className="icon"/>}
-                                />
-                                <LinkButton
-                                    title="GitHub"
-                                    href={"https://github.com/lvckyapi"}
-                                    icon={<SiGithub className="icon"/>}
-                                />
-                                <LinkButton
-                                    title="LinkedIn"
-                                    href={"https://www.linkedin.com/in/iven-schlenther-996a84268/"}
-                                    icon={<SiLinkedin className="icon"/>}
-                                />
-                                <LinkButton
-                                    title="Discord"
-                                    href={"https://discord.com/users/466986428107063306"}
-                                    icon={<SiDiscord className="icon"/>}
-                                />
-                                <LinkButton
-                                    title="Email"
-                                    href={"mailto:hello@schlenther.dev"}
-                                    icon={<FiMail className="icon"/>}
-                                />
+                                <LinkButtons/>
                             </div>
                         </motion.div>
                     </>
@@ -159,4 +103,36 @@ export default function Navbar() {
             </AnimatePresence>
         </>
     );
+}
+
+export function LinkButtons() {
+    return (
+        <>
+            <LinkButton
+                title="GitLab"
+                href={"https://git.lvckyworld.dev/iven.s"}
+                icon={<SiGitlab className="icon second" aria-label={'GitLab'}/>}
+            />
+            <LinkButton
+                title="GitHub"
+                href={"https://github.com/lvckyapi"}
+                icon={<SiGithub className="icon second" aria-label={'GitHub'}/>}
+            />
+            <LinkButton
+                title="LinkedIn"
+                href={"https://www.linkedin.com/in/iven-schlenther-996a84268/"}
+                icon={<SiLinkedin className="icon second" aria-label={'LinkedIn'}/>}
+            />
+            <LinkButton
+                title="Discord"
+                href={"https://discord.com/users/466986428107063306"}
+                icon={<SiDiscord className="icon second" aria-label={'Discord'}/>}
+            />
+            <LinkButton
+                title="Email"
+                href={"mailto:hello@schlenther.dev"}
+                icon={<FiMail className="icon" aria-label={'Email'}/>}
+            />
+        </>
+    )
 }

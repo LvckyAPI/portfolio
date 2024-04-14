@@ -50,5 +50,9 @@ p {
 }
 
 .lw-content-container {
-  @apply mt-24 w-full mb-32;
+  @apply mt-24 w-full mb-32 pt-10;
+}
+
+.lw-site-container {
+  @apply text-black dark:text-white flex flex-row justify-center w-full h-full bg-gradient-to-bl from-white to-[#EFCAFF] dark:from-black dark:to-[#2E1A37] min-h-screen;
 }

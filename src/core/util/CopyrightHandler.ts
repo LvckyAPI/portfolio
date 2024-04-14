@@ -26,6 +26,7 @@ export class CopyrightHandler {
     "=-:::::::::::::::::::::::::::::::::::::=
     `;
 
+        console.clear();
         console.log(logo, styleLogo, styleText, styleLogo, styleText, styleLogo, styleText, styleLogo, styleText, styleLogo);
     }
 

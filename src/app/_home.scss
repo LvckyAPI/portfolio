@@ -1,5 +1,5 @@
-.lw-content-container {
-  @apply mt-24 w-full mb-32;
+.lw-content-container.home {
+  @apply mt-24 w-full mb-32 pt-0;
 
   .avatar-container {
     @apply mt-36 mb-4 flex flex-row justify-center items-center;

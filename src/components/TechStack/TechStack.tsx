@@ -28,7 +28,7 @@ import "./_TechStack.scss";
 
 export default function TechStack() {
     return (
-        <div
+        <ul
             className="tech-stack-container">
             <TechItem icon={SiGitlab} name="GitLab"/>
             <TechItem icon={SiGithub} name="GitHub"/>
@@ -52,6 +52,6 @@ export default function TechStack() {
             <TechItem icon={SiNextdotjs} name="Next.js"/>
             <TechItem icon={SiTailwindcss} name="TailwindCSS"/>
             <TechItem icon={SiSass} name="SASS/SCSS"/>
-        </div>
+        </ul>
     );
 }
