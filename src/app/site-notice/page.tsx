@@ -3,7 +3,7 @@ import {motion} from "framer-motion";
 import {useEffect, useState} from "react";
 import {getSiteNoticeInfo} from "../../core/eRecht24/FetchER24";
 
-import "../style/legal-notice.scss"
+import "./_site-notice.scss"
 
 export default function NotFound() {
     const [siteNoticeEng, setSiteNoticeEng] = useState('');
@@ -20,7 +20,7 @@ export default function NotFound() {
             animate={{opacity: 1, scale: 1}}
             exit={{opacity: 0, scale: 0.95}}
             transition={{ease: "easeOut", duration: 0.5}}
-            className="lw-content-container pt-10"
+            className="lw-content-container"
         >
 
             <div className={'legal-notice'}>

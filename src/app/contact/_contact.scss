@@ -1,0 +1,15 @@
+.contact-page {
+  p {
+    @apply mb-4;
+  }
+
+  .contact-container {
+    @apply grid grid-cols-1 md:grid-cols-3 md:gap-4 mb-20;
+    .socials {
+      @apply row-start-1 md:row-auto;
+      .external-link {
+        @apply w-4 h-4 text-gray-400;
+      }
+    }
+  }
+}

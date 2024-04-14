@@ -4,7 +4,7 @@ import avatar from "../../public/avatar.png";
 import {useEffect, useState} from "react";
 import RepoItem from "../components/RepoItem/RepoItem";
 import Image from "next/image";
-import "./style/main-page.scss";
+import "./_home.scss";
 import TechStack from "../components/TechStack/TechStack";
 import {getGitHubStats} from "../core/github/FetchGitHubStats";
 
