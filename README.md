@@ -11,8 +11,14 @@ from [eRecht24](https://e-rech24.de).
 While Conrad uses the classic page structure and inline css classes (tailwind), I mostly use SCSS with tailwind and the
 app structure.
 I have also added a cache for external API requests, as well as ratelimit and a honeypot.
-My version does not pass on any client information like IP-Addresses to third parties and is therefore EU-DSGVO (GDPR) and GER BDSG
+My version does not pass on any client information like IP-Addresses to third parties and is therefore EU-DSGVO (GDPR)
+and GER BDSG
 compliant.
+
+## Configuration
+
+To configure the mailer, you need to edit the `.env` file in the root directory of the project.  
+eRecht24 keys are stored there as well.
 
 ## How to run this locally?
 
