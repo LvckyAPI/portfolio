@@ -1,3 +1,15 @@
+<div align=center>
+
+![alt text](https://i.lvckyworld.net/lvcky/team/lvckyapi/github/lvckyapi-banner.png)
+### Hey, I'm Iven 👋  
+
+Iven Schlenther / Magdeburg, Germany  
+I'm a Full Stack Developer
+
+</div>
+
+---
+
 ## What is this?
 
 This is the source code for my website [https://schlenther.dev](https://schlenther.dev).  
