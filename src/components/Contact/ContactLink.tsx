@@ -15,7 +15,7 @@ export default function ContactLink({name, icon, link}: {
     link: string;
     borderColor?: string;
 }) {
-    const [props, set] = useSpring(() => ({
+    const [{xys}, api] = useSpring(() => ({
         xys: [0, 0, 1],
         config: {mass: 1, tension: 350, friction: 40},
     }));
@@ -24,16 +24,16 @@ export default function ContactLink({name, icon, link}: {
         <Link href={link} target={'_blank'}>
             <animated.div
                 onMouseMove={({clientX: x, clientY: y}: { clientX: number; clientY: number }) =>
-                    set({xys: calc(x, y)})
+                    api.start({xys: calc(x, y)})
                 }
-                onMouseLeave={() => set({xys: [0, 0, 1]})}
-                style={{transform: props.xys.to(trans)}}
+                onMouseLeave={() => api.start({xys: [0, 0, 1]})}
+                style={{transform: xys.to(trans)}}
                 className={'contact-link'}
             >
 
                 {icon}
                 <h1 className="contact-name">{name}</h1>
-                <FiExternalLink className="external-link" />
+                <FiExternalLink className="external-link"/>
             </animated.div>
         </Link>
     );
