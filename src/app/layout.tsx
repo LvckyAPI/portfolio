@@ -42,7 +42,7 @@ export default function RootLayout({
         <body className={roboto.className}>
 
         <div
-            className="text-black dark:text-white flex flex-row justify-center w-full h-full bg-gradient-to-bl from-white to-[#F9EAFF] dark:from-black dark:to-[#2E1A37] min-h-screen">
+            className="text-black dark:text-white flex flex-row justify-center w-full h-full bg-gradient-to-bl from-white to-[#F6E1FF] dark:from-black dark:to-[#2E1A37] min-h-screen">
             <Navbar />
             <div className="w-[80%] md:w-[45rem]">
                 {children}
