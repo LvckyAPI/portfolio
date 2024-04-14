@@ -25,10 +25,17 @@ export default function MessageComponent() {
 
         setSending(true);
 
-        const mail = await sendEmail(email.current, message.current, subject.current, (!!name.current));
+        const sessionId = localStorage.getItem("lvckyworld-sid");
 
-        if (!mail) {
+        if (!sessionId) {
             setErrMsg("Something went wrong. Please try again.");
+            return setSending(false);
+        }
+
+        const mailStatus = await sendEmail(email.current, message.current, subject.current, (!!name.current), sessionId);
+
+        if (mailStatus.success === false) {
+            setErrMsg('Oops: ' + mailStatus.message);
             return setSending(false);
         }
 

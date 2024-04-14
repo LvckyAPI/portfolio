@@ -22,6 +22,16 @@ export default function Navbar() {
     };
 
     useEffect(() => {
+
+        if (!localStorage.getItem("lvckyworld-sid")) {
+            const getNewSessionId = () => {
+                const number = Math.random().toString(36).substring(2);
+                const unixTime = Math.floor(Date.now() / 1000);
+                return `${number}-${unixTime}-lw`;
+            }
+            localStorage.setItem("lvckyworld-sid", getNewSessionId());
+        }
+
         if (typeof window === "undefined") {
             return;
         }
@@ -29,7 +39,7 @@ export default function Navbar() {
         void new Audio("/pop.mp3").play().catch(() => null);
 
         CopyrightHandler.printLvckyWorldBrandingToConsole();
-        (document.querySelector('html') as HTMLElement).insertAdjacentHTML('afterbegin', CopyrightHandler.getLvckyWorldBrandingForHtml()) ;
+        (document.querySelector('html') as HTMLElement).insertAdjacentHTML('afterbegin', CopyrightHandler.getLvckyWorldBrandingForHtml());
     }, [pathName]);
 
 
