@@ -11,7 +11,7 @@ import LinkButton from "./mixin/LinkButton";
 import MobileLandingButton from "./mixin/MobileLandingButton";
 
 import './_Navbar.scss';
-import {CopyrightHandler} from "../../core/util/CopyrightHandler";
+import {runHeaderScripts} from "./mixin/RunHeaderScripts";
 
 export default function Navbar() {
     const pathName = usePathname();
@@ -22,44 +22,8 @@ export default function Navbar() {
     };
 
     useEffect(() => {
-
-        if (!localStorage.getItem("lvckyworld-sid")) {
-            const getNewSessionId = () => {
-                const number = Math.random().toString(36).substring(2);
-                const unixTime = Math.floor(Date.now() / 1000);
-                return `${number}-${unixTime}-lw`;
-            }
-            localStorage.setItem("lvckyworld-sid", getNewSessionId());
-        }
-
-        if (typeof window === "undefined") {
-            return;
-        }
-
-        void new Audio("/pop.mp3").play().catch(() => null);
-
-        let lastKeyPressTime = 0;
-        let lastKeyPressed = '';
-
-        window.addEventListener('keydown', function (event) {
-            if (lastKeyPressed === 'l' && event.key === 'w') {
-                const currentTime = new Date().getTime();
-                if (currentTime - lastKeyPressTime <= 5000) {
-                    console.log('Jaaaa, LvckyWorld 💜');
-                    window.open('https://lvckyworld.net', '_blank');
-                }
-            }
-            lastKeyPressTime = new Date().getTime();
-            lastKeyPressed = event.key;
-        });
-
-        CopyrightHandler.printLvckyWorldBrandingToConsole();
-        const branding = CopyrightHandler.getLvckyWorldBrandingForHtml();
-        if (!document?.querySelector('html')?.innerHTML.includes(branding)) {
-            (document.querySelector('html') as HTMLElement).insertAdjacentHTML('afterbegin', branding);
-        }
+        runHeaderScripts();
     }, [pathName]);
-
 
     return (<>
             <motion.div
