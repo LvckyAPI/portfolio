@@ -39,7 +39,10 @@ export default function Navbar() {
         void new Audio("/pop.mp3").play().catch(() => null);
 
         CopyrightHandler.printLvckyWorldBrandingToConsole();
-        (document.querySelector('html') as HTMLElement).insertAdjacentHTML('afterbegin', CopyrightHandler.getLvckyWorldBrandingForHtml());
+        const branding = CopyrightHandler.getLvckyWorldBrandingForHtml();
+        if (!document?.querySelector('html')?.innerHTML.includes(branding)) {
+            (document.querySelector('html') as HTMLElement).insertAdjacentHTML('afterbegin', branding);
+        }
     }, [pathName]);
 
 
