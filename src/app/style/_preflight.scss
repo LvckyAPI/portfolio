@@ -54,5 +54,5 @@ p {
 }
 
 .lw-site-container {
-  @apply text-black dark:text-white flex flex-row justify-center w-full h-full bg-gradient-to-bl from-white to-[#EFCAFF] dark:from-black dark:to-[#2E1A37] min-h-screen;
+  @apply text-black dark:text-white flex flex-row justify-center w-full h-full bg-gradient-to-bl from-white to-primary dark:from-black dark:to-primary-dark min-h-screen;
 }

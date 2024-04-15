@@ -1,5 +1,5 @@
 .contact-link {
-  @apply mb-4 p-4 row-start-3 bg-opacity-50 bg-white dark:bg-white/5 cursor-pointer transition-colors duration-150;
+  @apply mb-4 p-4 row-start-3 bg-opacity-50 bg-white/30 dark:bg-white/5 cursor-pointer transition-colors duration-150;
   @apply shadow-white shadow-none hover:shadow-lg rounded-md hover:border-gray-400/50;
   @apply flex flex-row items-center border border-zinc-800/50;
 
