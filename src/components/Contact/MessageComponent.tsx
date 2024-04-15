@@ -2,7 +2,7 @@ import {useRef, useState} from "react";
 import {RiSendPlane2Fill} from "react-icons/ri";
 import {ImSpinner2} from "react-icons/im";
 import {AnimatePresence, motion} from "framer-motion";
-import {sendEmail} from "../../core/mailer/EmailSender";
+import {sendEmail} from "@/core/mailer/EmailSender";
 
 import "./_MessageComponent.scss";
 
@@ -34,7 +34,7 @@ export default function MessageComponent() {
 
         const mailStatus = await sendEmail(email.current, message.current, subject.current, (!!name.current), sessionId);
 
-        if (mailStatus.success === false) {
+        if (!mailStatus.success) {
             setErrMsg('Oops: ' + mailStatus.message);
             return setSending(false);
         }
@@ -92,7 +92,7 @@ export default function MessageComponent() {
                         <textarea
                             placeholder="Hey ho, how are you going?"
                             onChange={(e: any) => (message.current = e.target.value)}
-                            className="w-full min-h-[9rem] p-2 h-36 mb-4 rounded-md bg-slate-300/50 dark:bg-slate-200/5 text-sm placeholder:text-gray-600 dark:placeholder:text-slate-200/20"
+                            className="text-box"
                         />
 
                         <div className="action-container">

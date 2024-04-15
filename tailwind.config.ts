@@ -20,6 +20,12 @@ const config: Config = {
             animation: {
                 'spin-slow': 'spin 2s linear infinite',
             },
+            colors: {
+                primary: {
+                    DEFAULT: "#EFCAFF",
+                    dark: "#3b2349"
+                }
+            }
         },
     },
     plugins: [],
