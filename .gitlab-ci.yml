@@ -10,9 +10,8 @@ include:
     inputs:
       stage: test
 
-Build Next.js:
-  stage: test
-  extends: .npm-install
+build:nextjs:
+  extends: .npm install
   script:
     - npm install
     - npm run build
