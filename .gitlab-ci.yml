@@ -1,10 +1,30 @@
 stages:
+  - test
   - deploy
 
 include:
   - project: 'lvckyworld-docker/gitlab-ci-rezept'
     file:
       - '/deployment/.rsync.yml'
+  - component: git.lvckyworld.dev/pipeline-components/node-package-manager/npm-install@~latest
+    inputs:
+      stage: test
+
+Build Next.js:
+  stage: test
+  extends: .npm-install
+  script:
+    - npm install
+    - npm run build
+  artifacts:
+    paths:
+      - .next
+    expire_in: 1 week
+  only:
+    - master
+    - merge_requests
+    - /^(deploy-dev-)\d{8}.\d{4}$/
+    - /^(deploy-prod-)\d{8}.\d{4}$/
 
 deploy:staging:
   extends: .deploy-rsync
