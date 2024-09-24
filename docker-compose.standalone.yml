@@ -1,0 +1,66 @@
+services:
+  # TYPESCRIPT
+  typescript:
+    container_name: "${PROJECT_NAME}_typescript"
+    build:
+      dockerfile: docker/Dockerfile
+      context: .
+    restart: always
+    ports:
+      - "3000:3000"
+    labels:
+      - "traefik.enable=true"
+
+      # Set domain and port for the reverse proxy
+      - "traefik.http.routers.${PROJECT_NAME}_typescript.rule=Host(`${PROJECT_BASE_URL}`)"
+      - "traefik.http.services.${PROJECT_NAME}_typescript.loadbalancer.server.port=3000"
+
+      # Redirect to HTTPS and use the TLS certificate resolver
+      - "traefik.http.routers.${PROJECT_NAME}_typescript.entrypoints=websecure"
+      - "traefik.http.routers.${PROJECT_NAME}_typescript.tls.certresolver=myresolver"
+      - "traefik.http.routers.${PROJECT_NAME}_typescript.middlewares=redirect-https"
+
+  # TRAEFIK (locale reverse proxy)
+  traefik:
+    image: traefik:v3.0
+    container_name: "${PROJECT_NAME}_traefik"
+    command:
+      - "--api.insecure=false"
+      - "--api.dashboard=true"
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.web.address=:80"
+      - "--entrypoints.websecure.address=:443"
+
+      # SSL Config
+      - "--certificatesresolvers.myresolver.acme.tlschallenge=true"
+      - "--certificatesresolvers.myresolver.acme.email=${LETSENCRYPT_EMAIL}"
+      - "--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json"
+    labels:
+      - "traefik.enable=true"
+
+      # Redirect HTTP to HTTPS
+      - "traefik.http.middlewares.redirect-https.redirectScheme.scheme=https"
+      - "traefik.http.middlewares.redirect-https.redirectScheme.permanent=true"
+
+      # Set domain and port for the reverse proxy (Dashboard)
+      - "traefik.http.routers.dashboard-plain.entrypoints=web"
+      - "traefik.http.routers.dashboard-plain.rule=Host(`traefik.${PROJECT_BASE_URL}`)"
+      - "traefik.http.routers.dashboard-plain.middlewares=redirect-https"
+
+      # Redirect to HTTPS and use the TLS certificate resolver
+      - "traefik.http.routers.dashboard.entrypoints=websecure"
+      - "traefik.http.routers.dashboard.tls.certresolver=myresolver"
+      - "traefik.http.routers.dashboard.rule=Host(`traefik.${PROJECT_BASE_URL}`)"
+      - "traefik.http.routers.dashboard.service=api@internal"
+
+      # Basic Auth
+#      - "traefik.http.routers.dashboard.middlewares=auth"
+#      - "traefik.http.middlewares.auth.basicauth.users=iven:$$apr1$$gktbi3ds$$z.Qi8HCECY4FWOxT3hz0Y0"
+    ports:
+      - '80:80'
+      - '443:443'
+      - '8080:8080' # Dashboard
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./traefik/letsencrypt:/letsencrypt
