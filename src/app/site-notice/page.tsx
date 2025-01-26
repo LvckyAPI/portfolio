@@ -1,7 +1,7 @@
 'use client';
 import {motion} from "framer-motion";
 import {useEffect, useState} from "react";
-import {getSiteNoticeInfo} from "../../core/eRecht24/FetchER24";
+import {getSiteNoticeInfo} from "@/core/eRecht24/FetchER24";
 
 import "./_site-notice.scss"
 
@@ -24,12 +24,12 @@ export default function NotFound() {
         >
 
             <div className={'legal-notice'}>
-                <h3>Information according to §5 TMG:</h3>
+                <h3>Information according to §5 DDG:</h3>
                 <div dangerouslySetInnerHTML={{__html: siteNoticeEng}}/>
 
                 <hr/>
 
-                <h3 className={'second'}>Angaben gemäß §5 TMG:</h3>
+                <h3 className={'second'}>Angaben gemäß §5 DDG:</h3>
                 <div dangerouslySetInnerHTML={{__html: siteNoticeGer}}/>
             </div>
 
